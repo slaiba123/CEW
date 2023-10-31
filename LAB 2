@@ -153,6 +153,7 @@ int main(){
  int inches_total=dist1.inches+dist2.inches;
  if(inches_total>=12){
     inches_total=inches_total%12;
+    feets_total+=1
  }
  printf("THE ADDED DISTANCE IS: %d ft %d in",feets_total,inches_total);
 
