@@ -1,1 +1,159 @@
+TASK # 1
+int main(){
+ int n;
+ printf("ENTER NUMBER:");
+ scanf("%d",&n);
+ int total=0;
+ int countr=1;
+ int sum=0;
+ for(int i=0;i<n;i++){
+	sum=i+countr;
+	countr++;
+	printf("%d",sum);
+   total+=sum;
+printf("Total sum is: %d",total);
+ }
+}
+ int i=0;
+ while(i<n){
+	sum=i+countr;
+	countr++;
+    i++;
+	printf(" %d",sum);
 
+
+ }
+  int i=0;
+  do{
+	sum=i+countr;
+	i++;
+	countr++;
+	printf("%d",sum)
+
+  while(i<n);
+}
+
+
+TASK # 2
+#include <stdio.h>
+int main() {
+    int n;
+    printf("Enter value for n:");
+    scanf("%d", &n);
+    for(int i=1;i<=n;i++){
+		for(int j=n;j>=i;j--){
+			printf(" ");
+		}
+		for(int k=1;k<=i;k++){
+			printf("* ");
+		}
+		printf("\n");
+    }
+    return 0;
+}
+
+TASK # 3
+
+#include <stdio.h>
+int str_len(char* char1){
+int n=0;
+while (char1[n] != '\0') {
+        n++;
+    }
+return n;
+}
+void check(char* char1,char* char2) {
+	int n1=str_len(char1);
+	int n2=str_len(char2);
+    if (n1==n2){
+            printf("Yes");
+    }
+    else if(n1>n2){
+			printf("First string is greater");
+
+    }
+    else{
+		printf("Second string is greater");
+    }
+}
+
+#include <stdio.h>
+
+int main() {
+    char char1[] = "laiba";
+    char char2[] = "laiba";
+    check(char1, char2);
+    return 0;
+//}
+
+
+TASK # 4
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+char* check_str(char* str) {
+    int length = strlen(str);
+    for(int i = 0; i < length; i++) {
+        if(isupper(str[i])) {
+            str[i] = tolower(str[i]);
+        }
+        else if(islower(str[i])) {
+            str[i] = toupper(str[i]);
+        }
+    }
+    return str;
+}
+
+int main() {
+	char str[] = "lAiBa";
+    printf("%s", check_str(str));
+    return 0;
+}
+
+TASK # 5
+#include <stdio.h>
+int main() {
+    int arr[] ={1, 2, 3, 2, 4, 4, 3,2,4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<n;i++){
+		int dup=0;
+        for(int j=0;j<n;j++){
+			if(i != j && arr[i]==arr[j]){
+				dup=1;
+				break;
+        }
+        }
+        if(!dup){
+		printf("%d\n",arr[i]);
+              }
+        }
+
+    return 0;
+}
+
+TASK # 6
+
+#include <stdio.h>
+#include <string.h>
+struct dist_add{
+	int feet;
+	int inches;
+};
+
+int main(){
+ struct dist_add dist1;
+ printf("ENTER DISTANCE:");
+ scanf("%d %d",&dist1.feet,&dist1.inches);
+ struct dist_add dist2;
+ printf("ENTER DISTANCE:");
+ scanf("%d %d",&dist2.feet,&dist2.inches);
+ int feets_total=dist1.feet+dist2.feet;
+ int inches_total=dist1.inches+dist2.inches;
+ if(inches_total>=12){
+    inches_total=inches_total%12;
+ }
+ printf("THE ADDED DISTANCE IS: %d ft %d in",feets_total,inches_total);
+
+}
