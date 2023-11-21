@@ -1,0 +1,361 @@
+///Q1
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//struct phnbk {
+//    int nmbr[11];
+//    char name[20];
+//    char email[50];
+//    struct phnbk* next_contact;
+//};
+//
+//struct phnbk* create_phnbk() {
+//    struct phnbk* book = (struct phnbk*)malloc(sizeof(struct phnbk));
+//    if (book == NULL) {
+//        printf("ERROR CREATING NEW BOOK");
+//        return NULL;
+//    }
+//    printf("ENTER NAME:");
+//    scanf("%s", book->name);
+//    printf("ENTER EMAIL:");
+//    scanf("%s", book->email);
+//    printf("ENTER PHONE NUMBER:");
+//    scanf("%d", &(book->nmbr));
+//    book->next_contact = NULL;
+//    return book;
+//}
+//
+//struct phnbk* add_new_contact(struct phnbk* book_cover) {
+//    struct phnbk* updated_book = book_cover;
+//    while (updated_book->next_contact != NULL) {
+//        updated_book = updated_book->next_contact;
+//    }
+//    updated_book->next_contact = (struct phnbk*)realloc(updated_book->next_contact, sizeof(struct phnbk));
+//    if (updated_book->next_contact == NULL) {
+//        printf("ERROR UPDATING BOOK");
+//        return NULL;
+//    }
+//    updated_book = updated_book->next_contact;
+//
+//    printf("ENTER NAME:");
+//    scanf("%s", updated_book->name);
+//    printf("ENTER EMAIL:");
+//    scanf("%s", updated_book->email);
+//    printf("ENTER PHONE NUMBER:");
+//    scanf("%d", &(updated_book->nmbr));
+//    updated_book->next_contact = NULL;
+//    return book_cover;
+//}
+//
+//struct phnbk* delete_contact(struct phnbk* book_cover, char* name) {
+//    struct phnbk* current = book_cover;
+//    struct phnbk* prev = NULL;
+//
+//    while (current != NULL && strcmp(current->name, name) != 0) {
+//        prev = current;
+//        current = current->next_contact;
+//    }
+//
+//    if (current == NULL) {
+//        printf("NO SUCH RECORD FOUND");
+//        return book_cover;
+//    }
+//
+//    if (prev == NULL) {
+//        book_cover = current->next_contact;
+//    } else {
+//        prev->next_contact = current->next_contact;
+//        free(current);
+//    }
+//    printf("CONTACT DELETED SUCCESSFULLY..");
+//    return book_cover;
+//}
+//
+//void print_phnbk(struct phnbk* book_cover) {
+//    struct phnbk* current = book_cover;
+//    int i = 1;
+//    while (current != NULL) {
+//        printf("CONTACT NUMBER: %d INFO:\n", i);
+//        printf("NAME: %s\n", current->name);
+//        printf("EMAIL: %s\n", current->email);
+//        printf("NUMBER: %d\n", current->nmbr);
+//        printf("\n");
+//        current = current->next_contact;
+//        i++;
+//    }
+//}
+//
+//int main() {
+//    char ch;
+//    printf("WELCOME LET'S CREATE YOUR PHONE BOOK:))\n");
+//    struct phnbk* book_cover;
+//    book_cover = create_phnbk();
+//
+//    while (1) {
+//        printf("DO YOU WANT TO:\nA.ADD NEW CONTACTS\nB.DELETE ANY CONTACT\nC.PRINT YOUR PHONE BOOK\nD.EXIT\nPLEASE ENTER YOUR CHOICE:");
+//        scanf(" %c", &ch);
+//
+//        if (ch == 'D') {
+//            break;
+//        }
+//
+//        if (ch == 'A') {
+//            book_cover = add_new_contact(book_cover);
+//        }
+//
+//        if (ch == 'B') {
+//            char name[20];
+//            printf("ENTER NAME OF CONTACT YOU WANT TO DELETE:");
+//            scanf("%s", name);
+//            book_cover = delete_contact(book_cover, name);
+//        }
+//
+//        if (ch == 'C') {
+//            print_phnbk(book_cover);
+//        }
+//    }
+//
+//    return 0;
+//}
+
+
+
+///Q2
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct Node{
+//    int data;
+//    struct Node* next;
+//};
+//
+//struct Node* create_node(int data){
+//    struct Node* new_node=(struct Node*) malloc(sizeof(struct Node));
+//    if (new_node==NULL){
+//       fprintf(stderr, "Memory allocation failed\n");
+//    }
+//    new_node->data=data;
+//    new_node->next=NULL;
+//    return new_node;
+//}
+//
+//struct Node* insert_end(struct Node* head,int data){
+//    struct Node* current=head;
+//    struct Node* new_node=create_node(data);
+//    while(current->next!=NULL){
+//         current=current->next;
+//    }
+//    current->next=new_node; 
+//    return head;
+//}
+//
+//void print_list(struct Node* head){
+//    struct Node* current=head;
+//    int i=0;
+//    while(current!=NULL){
+//        printf("NODE: %d DATA: %d\n",i,current->data);
+//        current=current->next;
+//        i++;
+//    };
+//}
+//struct Node* merge_lists(struct Node* head_1,struct Node* head_2){
+//    struct Node* current=head_1;
+//    while(current->next!=NULL){
+//        current=current->next;
+//    }
+//    current->next=head_2;
+//    return head_1;
+//}
+//int main(){
+//    struct Node* head=create_node(0);
+//    struct Node* current=head;
+//    // current->next=create_node(2);
+//    // current=current->next;
+//    // current->next=create_node(3);
+//    // current=current->next;
+//    // current->next=create_node(4);
+//    // current=current->next;
+//    // current->next=create_node(5);
+//    insert_end(head,1);
+//    insert_end(head,2);
+//    insert_end(head,3);
+//    struct Node* head_1=insert_end(head,4);
+//    struct Node* head_2=create_node(5);
+//    insert_end(head_2,1);
+//    insert_end(head_2,2);
+//    insert_end(head_2,3);
+//    struct Node* new_head=merge_lists(head_1,head_2);
+//    print_list(new_head);
+//}
+
+///Q3
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{
+int data;
+struct Node* next;
+};
+//function to create nodes
+struct Node* create_node(int data_insert){
+struct Node* new_Node=(struct Node*) malloc(sizeof(struct Node));
+if (new_Node == NULL) {
+printf("Memory allocation failed");
+return NULL;
+}
+new_Node->data=data_insert;
+new_Node->next=NULL;
+return new_Node;
+}
+//function to create linked list
+int create_link_list(void){
+//creation of list
+int count=1;
+printf("CREATING YOUR LIST....PLEASE ENTER 'Y' TO STOP\n");
+char ch;
+int data;
+printf("ENTER WHAT YOU WANT TO INSERT IN NODE:");
+scanf("%d",&data);
+struct Node* head = create_node(data);
+struct Node* current = head;
+printf("DO YOU WANT TO FINISH CREATING LIST?(Enter 'Y' to stop):");
+scanf("  %c",&ch);
+while(ch!='Y'){
+        printf("ENTER WHAT YOU WANT TO INSERT IN NODE:");
+        scanf("%d",&data);
+        current->next = create_node(data);
+        current = current->next;
+        count++;
+        printf("DO YOU WANT TO FINISH CREATING LIST?(Enter 'Y' to stop):");
+        scanf("  %c",&ch);
+    }
+//return count;
+//printing list
+struct Node* current2 = head;
+for(int i=0;i<count;i++){
+   if(current2==NULL){
+    printf("The list is printed");
+    break;
+   }
+   printf("NODE %d -> %d ",i,current2->data);
+   current2=current2->next;
+}
+return head;
+}
+void cnvrt_to_array(struct Node* head){
+struct Node* current=head;
+int* array=(int*)malloc( 1000 * sizeof(int) );
+int elements=0;
+while(current!=NULL){
+   array[elements]=current->data;
+   current=current->next;
+   elements++;
+}
+printf("\nPRINTING ARRAY...\n");
+int* arr_ptr=array;
+ printf("%c",'[');
+for(int i=0;i<elements;i++){
+    if(*arr_ptr==NULL){
+        break;
+    }
+    printf(" %d",*arr_ptr);
+    arr_ptr++;
+
+}
+printf("%c",']');
+free(array);
+}
+//calling in main function
+int main(){
+struct Node* head_list=create_link_list();
+cnvrt_to_array(head_list);
+return 0;
+}
+
+///Q4
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct Node{
+//int data;
+//struct Node* next;
+//};
+////function to create nodes
+//struct Node* create_node(int data_insert){
+//struct Node* new_Node=(struct Node*) malloc(sizeof(struct Node));
+//if (new_Node == NULL) {
+//printf("Memory allocation failed");
+//return NULL;// can cause error
+//}
+//new_Node->data=data_insert;
+//new_Node->next=NULL;
+//return new_Node;
+//}
+////function to create linked list
+//int create_link_list(void){
+////creation of list
+//int count=1;
+//printf("CREATING YOUR LIST....PLEASE ENTER 'Y' TO STOP\n");
+//char ch;
+//int data;
+//printf("ENTER WHAT YOU WANT TO INSERT IN NODE:");
+//scanf("%d",&data);
+//struct Node* head = create_node(data);
+//struct Node* current = head;
+//printf("DO YOU WANT TO FINISH CREATING LIST?(Enter 'Y' to stop):");
+//scanf("  %c",&ch);
+//while(ch!='Y'){
+//        printf("ENTER WHAT YOU WANT TO INSERT IN NODE:");
+//        scanf("%d",&data);
+//        current->next = create_node(data);
+//        current = current->next;
+//        count++;
+//        printf("DO YOU WANT TO FINISH CREATING LIST?(Enter 'Y' to stop):");
+//        scanf("  %c",&ch);
+//    }
+//return head;
+//}
+//void print_list(struct Node* head){
+//struct Node* current= head;
+//int i=1;
+//while(current!=NULL){
+//   printf("NODE %d -> %d ",i,current->data);
+//   current=current->next;
+//   i++;
+//}
+//printf("\n");
+//}
+/////function to remove element at odd indices
+//struct Node* remove_odd_elements(struct Node* head) {
+//    int count = 1;
+//    struct Node* current = head;
+//    struct Node* prev = NULL;
+//
+//    while (current != NULL) {
+//        if (count % 2 != 0) {
+//            if (prev == NULL) {
+//                head = current->next;
+//                free(current);
+//                current = head;
+//            } else {
+//                prev->next = current->next;
+//                free(current);
+//                current = prev->next;
+//            }
+//        } else {
+//            prev = current;
+//            current = current->next;
+//        }
+//        count++;
+//    }
+//
+//    return head;
+//}
+//
+//
+//int main(){
+//struct Node* head_list=create_link_list();
+//print_list(head_list);
+//struct Node* new_head_list=remove_odd_elements(head_list);
+//print_list(new_head_list);
+//return 0;
+//}
+
